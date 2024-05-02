@@ -78,7 +78,6 @@ app.get('/api', async (req, res) => {
               display: flex;
               width: 100%;
               height: 100%;
-              gap: 4px
             }
     
             .card__img {
