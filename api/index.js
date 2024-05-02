@@ -93,6 +93,7 @@ app.get('/api', async (req, res) => {
             .card__body {
               flex: 0 0 50%;
               display: flex;
+              position: relative;
               flex-direction: column;
               justify-content: center;
               padding: 12px;
@@ -101,15 +102,19 @@ app.get('/api', async (req, res) => {
             .card__logo {
               width: 80px;
               height: 40px;
-              margin-bottom: 8px;
               object-fit: contain;
+              position: absolute;
+              top:0;
+              left: 50%;
+              transform: translateX(-50%);
             }
     
             .card__title {
-              font: 600 14px 'Segoe UI', Ubuntu, Sans-Serif;
+              font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif;
               color: #fff;
               overflow: hidden;
-              white-space: nowrap;
+              white-space: wrap;
+              animation: ${cardTitleAnimation};
               text-overflow: ellipsis;
               margin-bottom: 4px;
             }
