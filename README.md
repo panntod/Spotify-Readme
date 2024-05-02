@@ -8,7 +8,7 @@ Dynamically generate Spotify currently playing tracks for your github readme or 
 
 ## Overview
 
-[![Listen to Spotify](https://panntod-spotify-readme.vercel.app/api)](https://panntod-spotify-readme.vercel.app/api)
+![Listen to Spotify](https://panntod-spotify-readme.vercel.app/api)
 
 ### How to use
 
@@ -16,7 +16,7 @@ Dynamically generate Spotify currently playing tracks for your github readme or 
 
 1. Go **edit settings** and add **Redirect URIs**.
    i.e. White-listed addresses to redirect to after authentication success OR failure.
-   For example development is http://localhost:3000, production is https://spotify-currently-playing-track.vercel.app/api.
+   For example development is http://localhost:3000, production is https://panntod-spotify-readme.vercel.app/api.
 
 1. Rename `.env.example` to `.env` file.
    Copy **Redirect URIs**, **Client ID**, **Client Secret** and paste into `YOUR_REDIRECT_URI` ,`YOUR_CLIENT_ID` and `YOUR_CLIENT_SECRET` field.
