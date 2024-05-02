@@ -8,7 +8,7 @@ Dynamically generate Spotify currently playing tracks for your github readme or 
 
 ## Overview
 
-[![](https://spotify-currently-playing-track.vercel.app/api)](https://spotify-currently-playing-track.vercel.app/api)
+[![Listen to Spotify](https://panntod-spotify-readme.vercel.app/api)](https://panntod-spotify-readme.vercel.app/api)
 
 ### How to use
 
