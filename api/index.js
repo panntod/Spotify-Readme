@@ -27,8 +27,8 @@ app.get('/api', async (req, res) => {
 
     let externalLink = '#'
     let cardImg = 'radial-gradient(#222922, #000500)'
-    let cardTitle = 'No tracks'
-    let cardSubtitle = ''
+    let cardTitle = 'No Tracks'
+    let cardSubtitle = null
     let cardTitleAnimation = 'noise 2s linear infinite'
     let playing = false
 
@@ -48,7 +48,7 @@ app.get('/api', async (req, res) => {
         )})`
         cardTitle = currentPlayingTrack.body.item.name
         cardSubtitle = currentPlayingTrack.body.item.artists.map((artist) => artist.name).join(', ')
-        cardTitleAnimation = ''
+        cardTitleAnimation = null
         playing = true
       }
     }

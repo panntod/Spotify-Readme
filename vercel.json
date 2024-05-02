@@ -5,7 +5,5 @@
       "destination": "/api/index.js"
     }
   ],
-  "redirects": [
-    { "source": "/", "destination": "https://github.com/panntod/Spotify-Readme" }
-  ]
+  "redirects": [{ "source": "/", "destination": "https://github.com/panntod/Spotify-Readme" }]
 }
