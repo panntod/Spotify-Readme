@@ -6,6 +6,6 @@
     }
   ],
   "redirects": [
-    { "source": "/", "destination": "https://github.com/regchiu/spotify-currently-playing-track" }
+    { "source": "/", "destination": "https://github.com/panntod/Spotify-Readme" }
   ]
 }
