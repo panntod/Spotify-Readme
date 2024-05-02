@@ -29,7 +29,10 @@ async function printRefreshToken() {
     spotifyApi.setAccessToken(data.body['access_token'])
     spotifyApi.setRefreshToken(data.body['refresh_token'])
     console.log('Your refresh token is: ')
+    console.log('')
     console.log(data.body['refresh_token'])
+    console.log('')
+    console.log('then paste the entire code pattern "code="')
     process.exit(0)
   } catch (error) {
     console.log(error)

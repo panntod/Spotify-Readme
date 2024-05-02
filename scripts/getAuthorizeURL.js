@@ -13,7 +13,12 @@ const spotifyApi = new SpotifyWebApi({
 async function printAuthorizeURL() {
   try {
     const authorizeURL = spotifyApi.createAuthorizeURL(scopes, state)
-    console.log(`Your URL is ${authorizeURL}, then paste the entire link into your browser.`)
+    console.log('Your confirm link is: ')
+    console.log('')
+    console.log(authorizeURL)
+    console.log('')
+    console.log('then paste the entire link into your browser.')
+    process.exit(0)
   } catch (error) {
     console.log(error)
   }
