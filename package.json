@@ -1,0 +1,35 @@
+{
+  "name": "spotify-readme",
+  "version": "1.0.0",
+  "description": "Dynamically generate Spotify currently playing tracks for your github readme",
+  "main": "index.js",
+  "scripts": {
+    "get-authorize-url": "node scripts/getAuthorizeURL.js",
+    "get-refresh-token": "node scripts/getRefreshToken.js",
+    "start": "nodemon ./api/index.js",
+    "lint": "eslint . --fix --ignore-path .gitignore",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.11.0",
+    "eslint-config-prettier": "^8.5.0",
+    "nodemon": "^3.1.0",
+    "prettier": "^2.6.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.19.2",
+    "spotify-web-api-node": "^4.0.0"
+  },
+  "overrides": {
+    "spotify-web-api-node": {
+      "superagent": {
+        "formidable": "^3.2.4"
+      }
+    }
+  }
+}
