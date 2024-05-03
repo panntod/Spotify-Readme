@@ -109,21 +109,19 @@ app.get('/api', async (req, res) => {
             }
     
             .card__title {
-              font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif;
+              font: 600 15px 'Segoe UI', Ubuntu, Sans-Serif;
               color: #fff;
               overflow: hidden;
               white-space: wrap;
               animation: ${cardTitleAnimation};
-              text-overflow: ellipsis;
               margin-bottom: 4px;
             }
             
             .card__subtitle {
-              font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif;
+              font: 600 10px 'Segoe UI', Ubuntu, Sans-Serif;
               color: #fff;
               overflow: hidden;
-              white-space: nowrap;
-              text-overflow: ellipsis;
+              white-space: wrap;
             }
     
             .overlay {
