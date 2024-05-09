@@ -24,13 +24,13 @@ Dynamically generate Spotify currently playing tracks for your github readme or 
 #### 2. Installation
 
 ```
-$ npm install
+npm install
 ```
 
 #### 3. Get Authorize URL
 
 ```
-$ npm run get-authorize-url
+npm run get-authorize-url
 ```
 
 Paste the entire link into your browser and copy the url query string named **"code"**.
@@ -38,7 +38,7 @@ Paste the entire link into your browser and copy the url query string named **"c
 #### 4. Get Refresh Token
 
 ```
-$ npm run get-refresh-token <code>
+npm run get-refresh-token <code>
 ```
 
 Copy and paste it into the `YOUR_REFRESH_TOKEN` field.
@@ -46,5 +46,5 @@ Copy and paste it into the `YOUR_REFRESH_TOKEN` field.
 #### 5. Run start
 
 ```
-$ npm run start
+npm run start
 ```
