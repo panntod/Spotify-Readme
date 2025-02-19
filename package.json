@@ -1,17 +1,23 @@
 {
   "name": "spotify-readme",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Dynamically generate Spotify currently playing tracks for your github readme",
-  "main": "index.js",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
-    "get-authorize-url": "node scripts/getAuthorizeURL.js",
-    "get-refresh-token": "node scripts/getRefreshToken.js",
-    "start": "nodemon ./api/index.js",
+    "get-authorize-url": "node src/scripts/getAuthorizeURL.js",
+    "get-refresh-token": "node src/scripts/getRefreshToken.js",
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
     "lint": "eslint . --fix --ignore-path .gitignore",
     "format": "prettier --write ."
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "spotify",
+    "github",
+    "readme"
+  ],
+  "author": "Pandhu A. Munjalindra",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^8.11.0",
