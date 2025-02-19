@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs'
 import path from 'path'
 
+import { createDefaultData, processTrackData } from '../utils/index.js'
 import { getCurrentPlayingTrack, spotifyRefreshAccessToken } from './spotify.js'
 
 function generateSpotifyCard({ externalLink, cardImg, cardTitle, cardSubtitle, playing }) {
@@ -41,45 +42,6 @@ function generateSpotifyCard({ externalLink, cardImg, cardTitle, cardSubtitle, p
 async function generateSpotifyCardData() {
   const MAX_RETRIES = 3
   let attempts = 0
-
-  // Fungsi untuk membuat objek data default
-  function createDefaultData() {
-    return {
-      externalLink: '#',
-      cardImg: 'radial-gradient(#222922, #000500)',
-      cardTitle: 'No Tracks',
-      cardSubtitle: '',
-      playing: false,
-      playlist: null,
-    }
-  }
-
-  // Fungsi untuk memproses data track yang sedang diputar
-  function processTrackData(currentPlayingTrack) {
-    const track = currentPlayingTrack.body.item
-    const isPlaying = currentPlayingTrack.body.is_playing
-    const context = currentPlayingTrack.body.context
-
-    const data = {
-      externalLink: track.external_urls?.spotify || '#',
-      cardTitle: track.name,
-      cardSubtitle: track.artists.map((artist) => artist.name).join(', '),
-      playing: isPlaying,
-      playlist: context
-        ? {
-            link: context.external_urls?.spotify || '#',
-            type: context.type,
-          }
-        : null,
-    }
-
-    const imgUrl = track.album.images.find((image) => image.height === 300)?.url
-    if (imgUrl) {
-      data.cardImg = `url(${imgUrl})`
-    }
-
-    return data
-  }
 
   // Fungsi utama untuk mengambil data
   async function fetchData() {
