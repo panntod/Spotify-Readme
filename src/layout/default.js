@@ -1,9 +1,21 @@
 import { readFileSync } from 'fs'
 import path from 'path'
+import { keyframesStyle } from '../config/index.js'
 
-export function generateDefaultLayout({ externalLink, cardImg, cardTitle, cardSubtitle, playing }) {
+export function generateDefaultLayout({
+  externalLink,
+  cardImg,
+  cardTitle,
+  cardSubtitle,
+  playing,
+  notFound,
+}) {
   const assetsPath = path.resolve('assets')
   const logoSvg = readFileSync(path.join(assetsPath, 'spotify-logo.svg'), { encoding: 'base64' })
+  const keyframe = keyframesStyle['noise']
+
+  const animation = notFound ? 'noise 2s infinite linear' : 'none'
+  const overlay = playing ? '' : 'overlay'
 
   return `<svg fill="none" viewBox="0 0 320 180" width="320" height="180" xmlns="http://www.w3.org/2000/svg">
   <foreignObject width="100%" height="100%">
@@ -12,7 +24,6 @@ export function generateDefaultLayout({ externalLink, cardImg, cardTitle, cardSu
         * {
             box-sizing: border-box;
         }
-
         .wrapper {
             text-decoration: none;
             display: flex;
@@ -23,13 +34,11 @@ export function generateDefaultLayout({ externalLink, cardImg, cardTitle, cardSu
             background-color: #222222;
             transition: transform 0.3s;
         }
-
         .card {
             display: flex;
             width: 100%;
             height: 100%;
         }
-
         .card__img {
             flex: 0 0 50%;
             background-image: ${cardImg};
@@ -37,7 +46,6 @@ export function generateDefaultLayout({ externalLink, cardImg, cardTitle, cardSu
             background-size: cover;
             background-position: center;
         }
-
         .card__body {
             flex: 0 0 50%;
             display: flex;
@@ -46,7 +54,6 @@ export function generateDefaultLayout({ externalLink, cardImg, cardTitle, cardSu
             justify-content: center;
             padding: 4px;
         }
-
         .card__logo {
             width: 80px;
             height: 40px;
@@ -56,7 +63,6 @@ export function generateDefaultLayout({ externalLink, cardImg, cardTitle, cardSu
             left: 50%;
             transform: translateX(-50%);
         }
-
         .card__title {
             font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif;
             color: #fff;
@@ -65,10 +71,9 @@ export function generateDefaultLayout({ externalLink, cardImg, cardTitle, cardSu
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             text-overflow: ellipsis;
-            animation:  ${cardSubtitle ? 'none' : 'noise 2s infinite linear'};
+            animation: ${animation};
             max-width: 100%;
         }
-
         .card__subtitle {
             font: 400 10px 'Segoe UI', Ubuntu, Sans-Serif;
             color: #fff;
@@ -76,7 +81,6 @@ export function generateDefaultLayout({ externalLink, cardImg, cardTitle, cardSu
             overflow: hidden;
             max-width: 100%;
         }
-
         .overlay {
             position: absolute;
             right: 0;
@@ -88,43 +92,7 @@ export function generateDefaultLayout({ externalLink, cardImg, cardTitle, cardSu
             content: '';
             pointer-events: none;
         }
-
-        @keyframes noise {
-
-            0%,
-            3%,
-            5%,
-            42%,
-            44%,
-            63%,
-            65%,
-            92%,
-            94%,
-            100% {
-                opacity: 1;
-                transform: scaleY(1);
-            }
-
-            4.3% {
-                opacity: 1;
-                transform: scaleY(4);
-            }
-
-            43% {
-                opacity: 1;
-                transform: scaleX(10) rotate(60deg);
-            }
-
-            64.3% {
-                opacity: 1;
-                transform: scaleY(4);
-            }
-
-            93% {
-                opacity: 1;
-                transform: scaleX(20) rotate(-60deg);
-            }
-        }
+        ${keyframe}
     </style>
     <a class="wrapper" href="${externalLink}" target="_blank">
         <div class="card">
@@ -138,7 +106,7 @@ export function generateDefaultLayout({ externalLink, cardImg, cardTitle, cardSu
                     <![CDATA[${cardSubtitle}]]>
                 </div>
             </div>
-            <div class="${playing ? '' : 'overlay'}"></div>
+            <div class="${overlay}"></div>
         </div>
     </a>
     </div>
