@@ -8,6 +8,7 @@ function createDefaultData() {
     cardSubtitle: 'None',
     playing: false,
     playlist: null,
+    notFound: true,
   }
 }
 
@@ -22,6 +23,7 @@ async function processTrackData(currentPlayingTrack) {
     cardTitle: track.name,
     cardSubtitle: track.artists.map((artist) => artist.name).join(', '),
     playing: isPlaying,
+    notFound: false,
     playlist: context
       ? {
           link: context.external_urls?.spotify || '#',
@@ -31,6 +33,7 @@ async function processTrackData(currentPlayingTrack) {
   }
 
   const imgUrl = track.album.images.find((image) => image.height === 300)?.url
+
   if (imgUrl) {
     try {
       const base64Image = await getImageBuffer(imgUrl)
