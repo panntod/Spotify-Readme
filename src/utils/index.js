@@ -2,9 +2,10 @@
 function createDefaultData() {
   return {
     externalLink: '#',
+    img: 'https://panntod.is-a.dev/spotify-logo.png',
     cardImg: 'radial-gradient(#222922, #000500)',
     cardTitle: 'No Tracks',
-    cardSubtitle: '',
+    cardSubtitle: 'None',
     playing: false,
     playlist: null,
   }
@@ -34,6 +35,7 @@ async function processTrackData(currentPlayingTrack) {
     try {
       const base64Image = await getImageBuffer(imgUrl)
       data.cardImg = `url(data:image/png;base64,${base64Image})`
+      data.img = imgUrl
     } catch (error) {
       console.error('Failed to fetch image:', error)
     }
@@ -53,4 +55,8 @@ async function getImageBuffer(url) {
   return Buffer.from(buffer).toString('base64')
 }
 
-export { createDefaultData, getImageBuffer, processTrackData }
+function isValidHexColor(str) {
+  return /^#[0-9A-F]{6}$/i.test(str)
+}
+
+export { createDefaultData, getImageBuffer, isValidHexColor, processTrackData }
