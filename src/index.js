@@ -11,7 +11,8 @@ app.get('/api', async (_, res) => {
     const { body } = await getCurrentPlayingTrack()
     res.status(200).json(body)
   } catch (error) {
-    res.status(500).json({ error: error.message })
+    console.error('Error During Fetching Data: ', error)
+    res.status(204).json({})
   }
 })
 
