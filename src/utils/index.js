@@ -62,4 +62,19 @@ function isValidHexColor(str) {
   return /^#[0-9A-F]{6}$/i.test(str)
 }
 
-export { createDefaultData, getImageBuffer, isValidHexColor, processTrackData }
+function isVerticalLayout(direction) {
+  return direction === 'vertical'
+}
+
+function isValidAlignment(textAlign) {
+  return ['center', 'start', 'end'].includes(textAlign)
+}
+
+export {
+  createDefaultData,
+  getImageBuffer,
+  isValidAlignment,
+  isValidHexColor,
+  isVerticalLayout,
+  processTrackData,
+}
