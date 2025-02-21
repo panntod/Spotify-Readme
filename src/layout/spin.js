@@ -2,7 +2,7 @@ import { keyframesStyle, textStyles } from '../config/index.js'
 import { isValidAlignment, isVerticalLayout } from '../utils/index.js'
 
 export function generateSpinLayout(data, options) {
-  const { img, cardTitle, cardSubtitle, externalLink, playing } = data
+  const { spotifyIcon, playingImg, cardTitle, cardSubtitle, externalLink, playing } = data
   const { textAlign, direction } = options
 
   const keyframe = keyframesStyle['spin']
@@ -62,7 +62,7 @@ export function generateSpinLayout(data, options) {
           </style>
           <a class="card-wrapper" href="${externalLink}" target="_blank">
             <div class="card__img">
-              <img src="${img}" alt="Logo"></img>
+              <img src="${playingImg || spotifyIcon}" alt="Cover"></img>
             </div>
             <div class="card__body">
               <div class="card__title">

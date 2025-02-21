@@ -2,7 +2,7 @@ import { keyframesStyle, textStyles } from '../config/index.js'
 import { isValidAlignment, isValidHexColor, isVerticalLayout } from '../utils/index.js'
 
 export function generateChordLayout(data, options) {
-  const { img, cardTitle, cardSubtitle, externalLink, playing } = data
+  const { spotifyIcon, playingImg, cardTitle, cardSubtitle, externalLink, playing } = data
   const { textAlign, color, direction } = options
 
   const textStyle = textStyles[direction]
@@ -54,7 +54,7 @@ export function generateChordLayout(data, options) {
                 width: 100%;
                 height: 100%;
                 border-radius: 8px;
-                object-fit: cover;
+                object-fit: contain;
             }
             .card__body {
                 padding: ${bodyPadding};
@@ -85,7 +85,7 @@ export function generateChordLayout(data, options) {
             ${textStyle}
           </style>
           <a class="card-wrapper" href="${externalLink}" target="_blank">
-            <div class="card__img"><img src="${img}" alt="Logo" /></div>
+            <div class="card__img"><img src="${playingImg || spotifyIcon}" alt="Cover" /></div>
             <div class="card__body">
               <div class="card__title"><![CDATA[${cardTitle}]]></div>
               <div class="card__subtitle"><![CDATA[${cardSubtitle}]]></div>

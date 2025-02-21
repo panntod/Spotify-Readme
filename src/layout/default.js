@@ -1,17 +1,14 @@
-import { readFileSync } from 'fs'
-import path from 'path'
 import { keyframesStyle } from '../config/index.js'
 
 export function generateDefaultLayout({
   externalLink,
+  spotifyLogo,
   cardImg,
   cardTitle,
   cardSubtitle,
   playing,
   notFound,
 }) {
-  const assetsPath = path.resolve('assets')
-  const logoSvg = readFileSync(path.join(assetsPath, 'spotify-logo.svg'), { encoding: 'base64' })
   const keyframe = keyframesStyle['noise']
 
   const animation = notFound ? 'noise 2s infinite linear' : 'none'
@@ -98,7 +95,7 @@ export function generateDefaultLayout({
         <div class="card">
             <div class="card__img"></div>
             <div class="card__body">
-                <img class="card__logo" src="data:image/svg+xml;base64,${logoSvg}"></img>
+                <img class="card__logo" src="${spotifyLogo}"></img>
                 <div class="card__title">
                     <![CDATA[${cardTitle}]]>
                 </div>

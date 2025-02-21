@@ -1,3 +1,16 @@
+import { readFileSync } from 'fs'
+import path from 'path'
+
+export const assetsPath = path.resolve('assets')
+
+export const spotifyLogo = readFileSync(path.join(assetsPath, 'spotify-logo.svg'), {
+  encoding: 'base64',
+})
+
+export const spotifyIcon = readFileSync(path.join(assetsPath, 'spotify-icon.svg'), {
+  encoding: 'base64',
+})
+
 export const keyframesStyle = {
   noise: `@keyframes noise {
         0%,
