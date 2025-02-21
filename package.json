@@ -1,6 +1,6 @@
 {
   "name": "spotify-readme",
-  "version": "1.2.0",
+  "version": "2.1.0",
   "description": "Dynamically generate Spotify currently playing tracks for your github readme",
   "main": "src/index.js",
   "type": "module",
