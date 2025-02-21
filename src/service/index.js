@@ -5,13 +5,13 @@ import { getCurrentPlayingTrack, spotifyRefreshAccessToken } from '../lib/spotif
 import { createDefaultData, processTrackData } from '../utils/index.js'
 
 function generateSpotifyCard(data, options = {}) {
-  const { animation, direction } = options
+  const { type } = options
 
-  switch (animation) {
+  switch (type) {
     case 'chord':
-      return generateChordLayout(data, direction)
+      return generateChordLayout(data, options)
     case 'spin':
-      return generateSpinLayout(data, direction)
+      return generateSpinLayout(data, options)
     default:
       return generateDefaultLayout(data)
   }

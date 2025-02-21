@@ -1,18 +1,23 @@
 import { keyframesStyle, textStyles } from '../config/index.js'
+import { isValidAlignment, isValidHexColor, isVerticalLayout } from '../utils/index.js'
 
-export function generateChordLayout(data, direction) {
+export function generateChordLayout(data, options) {
   const { img, cardTitle, cardSubtitle, externalLink, playing } = data
+  const { textAlign, color, direction } = options
+
   const textStyle = textStyles[direction]
   const keyframe = keyframesStyle['sound']
 
-  const isVertical = direction === 'vertical'
+  const vertical = isVerticalLayout(direction)
+  const chordColor = isValidHexColor(color) ? color : '#1DB954'
+  const textAlignment = isValidAlignment(textAlign) ? textAlign : 'center'
 
-  const width = isVertical ? 220 : 400
-  const height = isVertical ? 300 : 140
-  const imgWidth = isVertical ? '100%' : '110px'
-  const imgHeight = isVertical ? '190px' : 'auto'
-  const bodyPadding = isVertical ? '0 0 0 12px' : '0 0 0 12px'
-  const flexDirection = isVertical ? 'column' : 'row'
+  const width = vertical ? 220 : 400
+  const height = vertical ? 300 : 140
+  const imgWidth = vertical ? '100%' : '110px'
+  const imgHeight = vertical ? '190px' : 'auto'
+  const bodyPadding = vertical ? '0 0 0 12px' : '0 0 0 12px'
+  const flexDirection = vertical ? 'column' : 'row'
 
   const bars = playing
     ? `<div class="bars">
@@ -29,7 +34,7 @@ export function generateChordLayout(data, direction) {
           <style>
             * { box-sizing: border-box; }
             .card-wrapper {
-                background-color: #222;
+                background-color: #222222;
                 text-decoration: none;
                 overflow: hidden;
                 display: flex;
@@ -55,7 +60,7 @@ export function generateChordLayout(data, direction) {
                 padding: ${bodyPadding};
                 display: flex;
                 flex-direction: column;
-                text-align: center;
+                text-align: ${textAlignment};
                 color: white;
                 padding: 10px;
                 width: 100%;
@@ -71,7 +76,7 @@ export function generateChordLayout(data, direction) {
                 margin-top: 10px;
             }
             .bar {
-                background: #1DB954;
+                background: ${chordColor};
                 height: 3px;
                 width: 6px;
                 animation: sound 0.5s linear infinite alternate;

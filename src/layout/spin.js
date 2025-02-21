@@ -1,24 +1,28 @@
 import { keyframesStyle, textStyles } from '../config/index.js'
+import { isValidAlignment, isVerticalLayout } from '../utils/index.js'
 
-export function generateSpinLayout(data, direction) {
+export function generateSpinLayout(data, options) {
   const { img, cardTitle, cardSubtitle, externalLink, playing } = data
+  const { textAlign, direction } = options
+
   const keyframe = keyframesStyle['spin']
   const textStyle = textStyles['spin']
 
-  const isVertical = direction === 'vertical'
+  const vertical = isVerticalLayout(direction)
+  const textAlignment = isValidAlignment(textAlign) ? textAlign : 'start'
 
-  const width = isVertical ? 220 : 400
-  const height = isVertical ? 300 : 140
-  const imgSize = isVertical ? 170 : 120
-  const imgContainerSize = isVertical ? '100%' : '140px'
-  const flexDirection = isVertical ? 'column' : 'row'
+  const width = vertical ? 220 : 400
+  const height = vertical ? 300 : 140
+  const imgSize = vertical ? 170 : 120
+  const imgContainerSize = vertical ? '100%' : '140px'
+  const flexDirection = vertical ? 'column' : 'row'
 
   return `<svg fill="none" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
       <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
           <style>
             .card-wrapper {
-                background-color: #222;
+                background-color: #222222;
                 text-decoration: none;
                 overflow: hidden;
                 display: flex;
@@ -45,7 +49,7 @@ export function generateSpinLayout(data, direction) {
             .card__body {
                 display: flex;
                 flex-direction: column;
-                text-align: start;
+                text-align: ${textAlignment};
                 justify-content: center;
                 color: white;
                 width: 100%;

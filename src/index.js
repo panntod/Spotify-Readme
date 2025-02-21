@@ -1,7 +1,6 @@
 import 'dotenv/config'
 import express from 'express'
 
-import { generateDefaultLayout } from './layout/default.js'
 import { getCurrentPlayingTrack } from './lib/spotify.js'
 import { generateSpotifyCard, generateSpotifyCardData } from './service/index.js'
 
@@ -34,7 +33,7 @@ app.get('/', async (_, res) => {
   try {
     const data = await generateSpotifyCardData()
     res.setHeader('Content-Type', 'image/svg+xml')
-    res.status(200).send(generateDefaultLayout(data))
+    res.status(200).send(generateSpotifyCard(data))
   } catch (error) {
     console.error('Error During Fetching Data: ', error)
     res.status(500).send('Error During Fetching Data')
