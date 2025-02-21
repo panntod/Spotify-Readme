@@ -24,7 +24,7 @@ This API fetches the currently playing track from your Spotify account and gener
 
 - Go to the [Spotify Dashboard](https://developer.spotify.com/dashboard/)
 - Create a new app
-- Click **Edit Settings** and add **Redirect URIs** (e.g., `http://localhost:3000` for development, `https://panntod-spotify-readme.vercel.app/api` for production)
+- Click **Edit Settings** and add **Redirect URIs** (e.g., `http://localhost:3000` for development, `https://your-domain.vercel.app` for production)
 
 #### 1.2 Configure `.env` File
 
@@ -172,7 +172,26 @@ npm start
 | `item`       | `object`  | Currently playing track details        |
 | `is_playing` | `boolean` | Whether the track is currently playing |
 
----
+**URL:** `/card`
+
+**Method:** `GET`
+
+#### **Query Parameters**
+
+| Parameter   | Type     | Default      | Description                                         |
+| ----------- | -------- | ------------ | --------------------------------------------------- |
+| `type`      | `string` | `default`    | Type of card (`chord`, `spin`)                      |
+| `direction` | `string` | `horizontal` | Card layout (`horizontal`, `vertical`)              |
+| `textAlign` | `string` | `-`          | Text alignment (`left`, `center`, `right`)          |
+| `color`     | `string` | `#1DB954`    | Only for Chord Color (Hex, URL encoded `%230044FF`) |
+
+#### **Example Request**
+
+```sh
+GET http://localhost:3000/card?type=chord&direction=horizontal&textAlign=center&color=%230044FF
+```
+
+![Example Listen To Spotify](https://panntod-spotify-readme.vercel.app/card?type=chord&direction=horizontal&textAlign=center&color=%230044FF)
 
 ## **Contributing**
 
@@ -180,4 +199,4 @@ Feel free to submit issues or pull requests if you want to improve this project!
 
 ### **License**
 
-MIT License
+This project is licensed under the [MIT License](LICENSE).

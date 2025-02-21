@@ -2,11 +2,13 @@
 function createDefaultData() {
   return {
     externalLink: '#',
+    img: 'https://panntod.is-a.dev/spotify-logo.png',
     cardImg: 'radial-gradient(#222922, #000500)',
     cardTitle: 'No Tracks',
-    cardSubtitle: '',
+    cardSubtitle: 'None',
     playing: false,
     playlist: null,
+    notFound: true,
   }
 }
 
@@ -21,6 +23,7 @@ async function processTrackData(currentPlayingTrack) {
     cardTitle: track.name,
     cardSubtitle: track.artists.map((artist) => artist.name).join(', '),
     playing: isPlaying,
+    notFound: false,
     playlist: context
       ? {
           link: context.external_urls?.spotify || '#',
@@ -30,10 +33,12 @@ async function processTrackData(currentPlayingTrack) {
   }
 
   const imgUrl = track.album.images.find((image) => image.height === 300)?.url
+
   if (imgUrl) {
     try {
       const base64Image = await getImageBuffer(imgUrl)
       data.cardImg = `url(data:image/png;base64,${base64Image})`
+      data.img = imgUrl
     } catch (error) {
       console.error('Failed to fetch image:', error)
     }
@@ -53,4 +58,23 @@ async function getImageBuffer(url) {
   return Buffer.from(buffer).toString('base64')
 }
 
-export { createDefaultData, getImageBuffer, processTrackData }
+function isValidHexColor(str) {
+  return /^#[0-9A-F]{6}$/i.test(str)
+}
+
+function isVerticalLayout(direction) {
+  return direction === 'vertical'
+}
+
+function isValidAlignment(textAlign) {
+  return ['center', 'start', 'end'].includes(textAlign)
+}
+
+export {
+  createDefaultData,
+  getImageBuffer,
+  isValidAlignment,
+  isValidHexColor,
+  isVerticalLayout,
+  processTrackData,
+}

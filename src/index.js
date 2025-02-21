@@ -1,8 +1,8 @@
 import 'dotenv/config'
 import express from 'express'
 
-import { generateSpotifyCard, generateSpotifyCardData } from './lib/service.js'
 import { getCurrentPlayingTrack } from './lib/spotify.js'
+import { generateSpotifyCard, generateSpotifyCardData } from './service/index.js'
 
 const app = express()
 
@@ -16,14 +16,27 @@ app.get('/api', async (_, res) => {
   }
 })
 
-app.get('/', async (_, res) => {
+app.get('/card', async (req, res) => {
   try {
+    const options = req.query
     const data = await generateSpotifyCardData()
 
     res.setHeader('Content-Type', 'image/svg+xml')
+    res.status(200).send(generateSpotifyCard(data, options))
+  } catch (error) {
+    console.error('Failed to generate Spotify card:', error)
+    res.status(500).send('Failed to generate Spotify card.')
+  }
+})
+
+app.get('/', async (_, res) => {
+  try {
+    const data = await generateSpotifyCardData()
+    res.setHeader('Content-Type', 'image/svg+xml')
     res.status(200).send(generateSpotifyCard(data))
   } catch (error) {
-    res.status(500).send('Failed to generate Spotify card.')
+    console.error('Error During Fetching Data: ', error)
+    res.status(500).send('Error During Fetching Data')
   }
 })
 
