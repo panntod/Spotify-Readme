@@ -80,6 +80,15 @@ npm start
 
 **Method:** `GET`
 
+### **Response Fields**
+
+| Field        | Type      | Description                            |
+| ------------ | --------- | -------------------------------------- |
+| `timestamp`  | `number`  | Timestamp of the data retrieval        |
+| `context`    | `object`  | Playlist or album context              |
+| `item`       | `object`  | Currently playing track details        |
+| `is_playing` | `boolean` | Whether the track is currently playing |
+
 #### **Response Example**
 
 ```json
@@ -162,15 +171,6 @@ npm start
   "is_playing": true
 }
 ```
-
-### **Response Fields**
-
-| Field        | Type      | Description                            |
-| ------------ | --------- | -------------------------------------- |
-| `timestamp`  | `number`  | Timestamp of the data retrieval        |
-| `context`    | `object`  | Playlist or album context              |
-| `item`       | `object`  | Currently playing track details        |
-| `is_playing` | `boolean` | Whether the track is currently playing |
 
 **URL:** `/card`
 
